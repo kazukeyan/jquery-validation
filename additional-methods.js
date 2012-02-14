@@ -4,7 +4,7 @@
  * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
  * http://docs.jquery.com/Plugins/Validation
  *
- * Copyright (c) 2006 - 2011 Jörn Zaefferer
+ * Copyright (c) 2006 - 2011 Jorn Zaefferer
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -298,3 +298,18 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
     return this.optional(element) || param.test(value);
 }, "Invalid format.");
 
+/**
+  * Return true if the field value matches "Fullwidth Katakana"
+  *
+  * Katakana(full-width) http://en.wikipedia.org/wiki/Katakana#Unicode
+  *
+  * @name jQuery.validator.methods.fullWidthKatakana
+  * @type Boolean
+  * 
+  */
+jQuery.validator.addMethod(
+	"fullWidthKatakana",
+	function(string, element) {
+		return this.optional(element) || string.match(/^[\u30A0-\u30FF]+$/);
+	}
+);
